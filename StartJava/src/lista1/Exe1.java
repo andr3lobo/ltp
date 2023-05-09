@@ -1,6 +1,6 @@
 package lista1;
 
-public class Salario {
+public class Exe1 {
 
 	public static void main(String[] args) {
 		/*letra a)*/
