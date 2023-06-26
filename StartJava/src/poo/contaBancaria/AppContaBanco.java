@@ -4,33 +4,39 @@ public class AppContaBanco {
 
 	public static void main(String[] args) {
 		
-//		Conta c1 = new Conta();
-//		c1.setNomeTitular("Felipe Ferraz");
-//		c1.setSaldo(1000);
-//		c1.setNumero(1239809);
-//		
-		ContaPoupanca cp = new ContaPoupanca();
-		cp.setNomeTitular("Júlia K");
-		cp.setSaldo(1000);
-		cp.setNumero(12309883);
+		Conta cLeandra = new Conta("Leandra", 10000);
+		cLeandra.setNumero(1234);
+		
+		System.out.println("Nome Titular: " + cLeandra.getNomeTitular()+
+				" Valor: "+cLeandra.getSaldo());
 		
 		
-		System.out.println("Saldo: "+cp.getSaldo());
+		ContaPoupanca contaMariana = new ContaPoupanca();
+		contaMariana.setNomeTitular("Mariana");
+		contaMariana.setNumero(3456);
+		contaMariana.depositar(2000);
 		
-		cp.rendimentoMensal();
-		cp.depositar(500);
+		System.out.println("Nome Titular: " + contaMariana.getNomeTitular()+
+				" Valor: "+contaMariana.getSaldo());
 		
-		System.out.println("Saldo: "+cp.getSaldo());
+		//Leandra vai pagar a Mariana - transferência
+		
+		cLeandra.transferir(cLeandra, contaMariana, 1000);
+		System.out.println("Após a transferência ...");
+		
+		System.out.println("Nome Titular: " + cLeandra.getNomeTitular()+
+				" Valor: "+cLeandra.getSaldo());
+		
+		System.out.println("Nome Titular: " + contaMariana.getNomeTitular()+
+				" Valor: "+contaMariana.getSaldo());
+		
+		contaMariana.rendimentoMensal();
+		System.out.println("Nome Titular: " + contaMariana.getNomeTitular()+
+				" Valor: "+contaMariana.getSaldo());
 		
 		
 		
 		
-//		System.out.println("Saldo: "+c1.getSaldo());
-//		c1.sacar(100);
-//		System.out.println("Saldo: "+c1.getSaldo());
-//		
-//		c1.depositar(200);
-//		System.out.println("Saldo: "+c1.getSaldo());	
 	}
 
 }

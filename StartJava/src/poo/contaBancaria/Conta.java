@@ -19,6 +19,7 @@ public class Conta {
 		
 		if (valor <= this.saldo) {
 			this.saldo = this.saldo - valor;
+			
 			System.out.println("Saque de R$ "
 			+valor+" autorizado!");
 		}
@@ -26,7 +27,13 @@ public class Conta {
 	
 	public void depositar (double v) {
 		this.saldo = this.saldo + v;
+		
 //		this.saldo+=v;
+	}
+	
+	public void transferir(Conta origem, Conta destino, double valor) {
+		origem.sacar(valor);
+		destino.depositar(valor);
 	}
 	
 	
