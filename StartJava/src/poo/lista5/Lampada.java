@@ -23,14 +23,18 @@ public class Lampada {
 	public void ligar() {
 		this.estado = true;
 		System.out.println("Lâmpada Ligada com intensidade: "+this.intensidade);
-		
-		
 	}
 	
 	public void desligar() {
 		this.estado = false;
 		System.out.println("Lâmpada Desligada!!!");
 	}
+	
+	
+	public void aumentarIntensidade (double valor) {
+		this.intensidade = this.intensidade + valor;
+	}
+	
 
 	public String getMarca() {
 		return marca;
@@ -71,6 +75,7 @@ public class Lampada {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+	
 	
 	
 	
