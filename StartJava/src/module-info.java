@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author andrelobo
- *
- */
-module StartJava {
-}

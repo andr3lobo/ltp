@@ -3,20 +3,20 @@ package lista4;
 public class SwitchCase {
 
 	public static void main(String[] args) {
-		
+
 		String sinal = "verde";
-		
+
 		switch (sinal) {
 		case "verde": {
-			
+
 			System.out.println("Prossiga!");
 			break;
 		}
-		case "amarelo":{
+		case "amarelo": {
 			System.out.println("Atenção!");
 			break;
 		}
-		case "vermelho":{
+		case "vermelho": {
 			System.out.println("Pare!");
 			break;
 		}
