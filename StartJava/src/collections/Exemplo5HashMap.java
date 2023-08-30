@@ -15,7 +15,10 @@ public class Exemplo5HashMap {
 		notas.put("Banco de Dados", 9.7);
 		
 		//resgatando por uma chave específica
-		Double x = notas.get("LTP");
+		Double x = notas.get("Banco de Dados");
+		
+		
+		System.out.println("BD::"+x);
 		
 		
 		//imprimindo a chave e o valor

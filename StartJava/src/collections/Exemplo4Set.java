@@ -12,7 +12,7 @@ public class Exemplo4Set {
 	public static void main(String[] args) {
 		
 		//registro da frequencia com duplicidades
-		List<String> frequencias = registro(230);
+		List<String> frequencias = registro(30);
 		
 		for (String s: frequencias)
 			System.out.println(s);

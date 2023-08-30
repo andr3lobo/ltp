@@ -18,6 +18,7 @@ public class Exemplo3LinkedList {
 
 	private static void geradorTelas(LinkedList<String> cenario1, int qtdeTelas) {
 		int i = 1;
+		
 		while(i<=qtdeTelas) {
 			cenario1.add("Tela"+i+"-->");
 			i++;
