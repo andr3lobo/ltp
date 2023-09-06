@@ -16,9 +16,9 @@ public class Exe4 {
 		numeros.add(44);
 		
 		ArrayList<Integer>  numeros2 = new ArrayList<Integer>();
-		numeros.add(200); numeros.add(33);
-		numeros.add(311); numeros.add(4);
-		numeros.add(45);
+		numeros2.add(200); numeros.add(33);
+		numeros2.add(311); numeros2.add(4);
+		numeros2.add(45);
 		
 		//criar o método totalPares que vai retornar a quantidade de 
 		//números pares existentes no Array
