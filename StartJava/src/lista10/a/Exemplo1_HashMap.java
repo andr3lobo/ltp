@@ -7,8 +7,11 @@ public class Exemplo1_HashMap {
 	
 	public static void main(String[] args) {
 		
-		
 		HashMap<String, Double> produtos = new HashMap<String, Double>();
+		
+		
+		String x = "André";
+		String y = "André";
 		
 		Scanner ler = new Scanner(System.in);
 		int option = menuOpcoes(ler);
@@ -41,7 +44,6 @@ public class Exemplo1_HashMap {
 			System.out.println("O produto não está cadastrado!"
 					+ "/nDigite uma opção válida!");
 		}
-		
 	}
 
 	private static void cadastrarProduto(Scanner ler, HashMap<String, Double> produtos) {

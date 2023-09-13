@@ -1,5 +1,6 @@
 package lista10.a;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -14,6 +15,7 @@ public class Exe8 {
 		notas.put("Ana Hippler", 10.0);
 		notas.put("João", 7.5);
 		notas.put("Leandra", 10.0);
+		notas.put("Lucas", 9.2);
 		
 		Scanner ler = new Scanner(System.in);
 		
@@ -26,6 +28,7 @@ public class Exe8 {
 		} else {
 			System.out.println("Nome não encontrado!");
 		}
+		
 	}
 
 }
