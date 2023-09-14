@@ -11,7 +11,9 @@ public class Exe9 {
 	public static void main(String[] args) {
 		
 		int option = menuGeral();
+		
 		while(option != 3) {
+			
 			switch (option) {
 			case 1:
 				System.out.println("Digite o nome da disciplina: ");
@@ -23,6 +25,7 @@ public class Exe9 {
 			case 2:
 				consultarNotas();
 				break;
+				
 			case 3:
 				break;
 
@@ -33,8 +36,6 @@ public class Exe9 {
 			
 			option = menuGeral();
 		}
-		
-
 	}
 	
 	private static void consultarNotas() {
