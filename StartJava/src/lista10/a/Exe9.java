@@ -1,5 +1,6 @@
 package lista10.a;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -10,6 +11,7 @@ public class Exe9 {
 	
 	public static void main(String[] args) {
 		int option = menuGeral();
+		ArrayList<String> a = new ArrayList<String>();
 		
 		while(option != 3) {
 			
@@ -41,6 +43,8 @@ public class Exe9 {
 		}
 		
 	}
+	
+	
 
 	private static void consultaNotas() {
 		System.out.println("## Consulta de notas ##");
@@ -49,11 +53,17 @@ public class Exe9 {
 		
 		if (disciplinas.containsKey(nome)) {
 			Double [] notas = disciplinas.get(nome);
-			for (Double n : notas)
-				System.out.print(n+ "  ");
+			
+			showArray(notas);
 			
 		} else
 			System.out.println("Disciplina não cadastrada!");
+		
+	}
+
+	private static void showArray(Double[] notas) {
+		for (Double n : notas)
+			System.out.print(n+ "  ");
 		
 	}
 
