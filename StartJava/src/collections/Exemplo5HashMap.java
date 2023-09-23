@@ -6,7 +6,8 @@ import java.util.Map;
 public class Exemplo5HashMap {
 
 	public static void main(String[] args) {
-		Map<String, Double>  notas = new HashMap<String, Double>();
+		
+		HashMap<String, Double>  notas = new HashMap<String, Double>();
 		// listagem de disciplinas
 		notas.put("LTP", 10.0);
 		notas.put("Matemática", 10.0);
@@ -16,7 +17,7 @@ public class Exemplo5HashMap {
 		
 		//resgatando por uma chave específica
 		Double x = notas.get("Banco de Dados");
-		
+		x = notas.get("Português");
 		
 		System.out.println("BD::"+x);
 		

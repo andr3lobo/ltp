@@ -14,6 +14,10 @@ public class ExemploArrayList {
 		km.add(28);
 		km.add(79);
 		
+		for (int i = 0; i < km.size(); i++) {
+			System.out.println(km.get(i));
+		}
+		
 		for(Integer k: km)
 			System.out.println(k);
 		
