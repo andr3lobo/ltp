@@ -1,4 +1,4 @@
-package desafio.calculadora;
+package calculadora;
 
 import java.util.*;
 
@@ -17,7 +17,7 @@ public class Calculadora {
 	public int menu() {//retorna a opção informada pelo usuário	
 		String menu = "\n#### Calculadora ####\n"
 		+ this.resultado + "\n"
-		+ "Informe a opção desejada:\n"
+		+"Informe a opção desejada:\n"
 		+ "1 - Somar\n"
 		+ "2 - Subtrair\n"
 		+ "3 - dividir\n"
@@ -32,7 +32,7 @@ public class Calculadora {
 	public void somar() {
 		this.num1 = capturaNumero("primeiro");
 		this.num2 = capturaNumero("segundo");
-		setResultado("soma", this.num1 + this.num2);
+		setResultado("soma", this.num1+this.num2);
 		
 		if (this.history.size()>= 10) {
 			this.history.remove();
@@ -77,7 +77,8 @@ public class Calculadora {
 	 * método atualiza o resultado da última operação para ser exibida, conforme requisito do problema
 	 */
 	private void setResultado (String operacao, double r) {
-		this.resultado = "### Resultado da "+operacao+": " +r+"###\n";
+		this.resultado = "### Resultado da "+operacao+": "
+						 +r+"###\n";
 	}
 	
 	private double capturaNumero(String s) {

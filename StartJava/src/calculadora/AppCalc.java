@@ -1,4 +1,6 @@
-package desafio.calculadora;
+package calculadora;
+
+import java.util.Scanner;
 
 public class AppCalc {
 
