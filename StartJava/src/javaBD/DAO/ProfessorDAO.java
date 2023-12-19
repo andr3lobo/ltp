@@ -26,8 +26,8 @@ public class ProfessorDAO {
 	public void retirarChave(Professor professor, Sala sala) {
 		
 		String sql_acessos = "INSERT INTO acessos "
-				+ "(retirada, professor_id, sala_num) VALUES "
-				+ "(?, ?, ?)";
+				+ "(retirada, sala_num) VALUES "
+				+ "(?, ?)";
 		Connection conn = null;
 		PreparedStatement pstm = null;
 		try {
@@ -46,8 +46,7 @@ public class ProfessorDAO {
 			String s = dateFormat.format(date).toString(); 
 			
 			pstm.setString(1, s);
-			pstm.setInt(2, professor.getId());
-			pstm.setInt(3, sala.getNumero());
+			pstm.setInt(2, sala.getNumero());
 			
 			//executar a query
 			pstm.execute();
@@ -69,12 +68,11 @@ public class ProfessorDAO {
 				e2.printStackTrace();
 			}
 		}
-		
 	}
 	
 	public void devolverChave(Professor prof, Sala sala) {
-		String sql_acessos = "UPDATE acessos "
-				+ "(devolucao) VALUES (?)";
+		String sql_acessos = "UPDATE acessos SET "
+				+ "devolucao = ? WHERE professor_id = ? AND sala_num = ?";
 		Connection conn = null;
 		PreparedStatement pstm = null;
 		try {
@@ -93,6 +91,8 @@ public class ProfessorDAO {
 			String s = dateFormat.format(date).toString(); 
 			
 			pstm.setString(1, s);
+			pstm.setInt(2, prof.getId());
+			pstm.setInt(3, sala.getNumero());
 			
 			//executar a query
 			pstm.execute();
