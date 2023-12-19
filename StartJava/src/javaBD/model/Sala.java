@@ -13,6 +13,10 @@ public class Sala {
 	
 	public Sala() {}
 
+	public Sala(int numChave) {
+		this.numero = numChave;
+	}
+
 	public int getNumero() {
 		return numero;
 	}

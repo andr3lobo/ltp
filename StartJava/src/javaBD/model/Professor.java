@@ -12,6 +12,10 @@ public class Professor {
 		this.senha = senha;
 	}
 
+	public Professor(String nome) {
+		this.nome = nome;
+	}
+
 	public int getId() {
 		return id;
 	}
