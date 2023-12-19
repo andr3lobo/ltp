@@ -12,6 +12,7 @@ import javaBD.conexaoBD.ConnectionFactory;
 import javaBD.model.Professor;
 import javaBD.model.Sala;
 
+
 public class AppAcessoSalas {
 	static Scanner leitor = new Scanner(System.in);//leitor do teclado
 
