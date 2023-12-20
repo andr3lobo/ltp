@@ -20,11 +20,10 @@ public class ProfessorDAO {
 	 * Atualiza a tabela acessos com as informações dos objetos abaixo:
 	 * @param professor
 	 * @param sala
-	 * 
-	 * A tabela sala tem a disponibilidade atualizada a cada retirada
 	 */
 	public void retirarChave(Professor professor, Sala sala) {
 		
+		// String com a query de grava as informações necessárias para retirar a chave
 		String sql_acessos = "INSERT INTO acessos "
 				+ "(retirada, sala_num) VALUES "
 				+ "(?, ?)";
@@ -41,6 +40,7 @@ public class ProfessorDAO {
 			sala.setDisponivel(false);
 			//colocar valores que são esperados pela query
 			
+				//capta a data e hora atual para gravar no BD 
 			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss"); 
 			Date date = new Date();
 			String s = dateFormat.format(date).toString(); 
@@ -50,8 +50,6 @@ public class ProfessorDAO {
 			
 			//executar a query
 			pstm.execute();
-			
-			setDisponibilidade(sala);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -98,7 +96,6 @@ public class ProfessorDAO {
 			pstm.execute();
 			
 			sala.setDisponivel(true);
-			setDisponibilidade(sala);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -125,45 +122,6 @@ public class ProfessorDAO {
 	 * d: delete
 	 * 
 	 */
-	
-	private void setDisponibilidade(Sala sala) {
-		String sql_acessos = "UPDATE sala "
-				+ "SET disponivel = ? WHERE numero = ?";
-		Connection conn = null;
-		PreparedStatement pstm = null;
-		try {
-			
-			//cria um conexao com o banco de dados
-			conn = ConnectionFactory.createConnectionToMySQL();
-			
-			//criamos uma prepared statement 
-			pstm = conn.prepareStatement(sql_acessos);
-			
-			//colocar valores que são esperados pela query
-			
-			pstm.setBoolean(1, sala.isDisponivel());
-			pstm.setInt(2, sala.getNumero());
-			
-			//executar a query
-			pstm.execute();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			
-		} finally {
-			try {
-				if(pstm!=null) {
-					pstm.close();
-				}
-				if (conn !=null) {
-					conn.close();
-				}
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-		
-	}
 
 	/**
 	 * 

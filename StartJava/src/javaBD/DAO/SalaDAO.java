@@ -45,4 +45,43 @@ public class SalaDAO {
 		
 		return listaSalas;
 	}
+	
+	public void setDisponibilidade(Sala sala) {
+		String sql_acessos = "UPDATE sala "
+				+ "SET disponivel = ? WHERE numero = ?";
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		try {
+			
+			//cria um conexao com o banco de dados
+			conn = ConnectionFactory.createConnectionToMySQL();
+			
+			//criamos uma prepared statement 
+			pstm = conn.prepareStatement(sql_acessos);
+			
+			//colocar valores que são esperados pela query
+			
+			pstm.setBoolean(1, sala.isDisponivel());
+			pstm.setInt(2, sala.getNumero());
+			
+			//executar a query
+			pstm.execute();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			try {
+				if(pstm!=null) {
+					pstm.close();
+				}
+				if (conn !=null) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+	}
 }

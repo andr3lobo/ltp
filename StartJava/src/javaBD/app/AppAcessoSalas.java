@@ -27,28 +27,36 @@ public class AppAcessoSalas {
 		while(option != 3) {
 			switch (option) {
 			
-			case 1:
+			//retirar chave
+			case 1:  
 				System.out.println("### Digite o Nº da chave para retirar:");
-				List<Sala> listaSalas = salaDAO.getSalas();
-				ArrayList<Integer> chavesDispo = new ArrayList<Integer>();
+				List<Sala> listaSalas = salaDAO.getSalas(); // lista de todas as salas cadastradas no BD
+				ArrayList<Integer> chavesDispo = new ArrayList<Integer>(); // lista vazia para adicionar somente as salas disponíveis 
+				
+				//laço para percorrer a lista de salas exibindo as opções ao usuário
 				for (Sala s : listaSalas) {
 					if (s.isDisponivel()) {
 						System.out.println("Chave Nº: "+ s.getNumero() + 
-								" - "+s.getDescricao());
-						chavesDispo.add(s.getNumero());
+								" - "+s.getDescricao()); // exibindo as informações
+						chavesDispo.add(s.getNumero()); // adicionando as salas disponíveis
 					}
 				}
 				
-				Sala sala = new Sala( leitor.nextInt() );
+				// o usuário digita a sala que deseja retirar e cria-se um objeto com o número informado
+				Sala sala = new Sala( leitor.nextInt() ); 
 				if (chavesDispo.contains( sala.getNumero() ) ) {
 					System.out.println("Digite seu nome: ");
-					Professor prof = new Professor(leitor.next());
 					
-					//adicionar id ao objeto professor
-					profDAO.verificaProf(prof); //verificar se nome é válido
-					if (prof.getId() > 0) {
+					// o usuário digita o nome do professor e cria-se um objeto com o nome informado
+					Professor prof = new Professor(leitor.next()); 
+					
+					profDAO.verificaProf(prof); //verifica se existe professor com o nome digitado
+					
+					if (prof.getId() > 0) { // se o banco retornar um valor - ok
+						profDAO.retirarChave(prof, sala); // método invocado para registrar no BD uma retirada de chave
 						sala.setDisponivel(false);
-						profDAO.retirarChave(prof, sala);
+						salaDAO.setDisponibilidade(sala); // método invocado para alterar a disponibilidade de uma sala
+						
 					}
 					
 				} else {
@@ -58,10 +66,11 @@ public class AppAcessoSalas {
 				
 				break;
 			
-			case 2: // devolver chave
+			case 2:
+				// devolver chave
 				System.out.println("### Digite o Nº da chave para devolver:");
-				List<Sala> chaves =salaDAO.getSalas();
-				ArrayList<Integer> chavesInd = new ArrayList<Integer>();
+				List<Sala> chaves =salaDAO.getSalas(); 
+				ArrayList<Integer> chavesInd = new ArrayList<Integer>(); // 
 				for (Sala s : chaves) {
 					if (s.isDisponivel() == false) {
 						System.out.println("Chave Nº: "+ s.getNumero() + 
@@ -71,7 +80,7 @@ public class AppAcessoSalas {
 				}
 				
 				Sala sa = new Sala( leitor.nextInt() );
-//				if (chaves.contains( sa.getNumero() ) ) {
+				
 				if (chavesInd.contains(sa.getNumero()) ) {
 					System.out.println("Digite seu nome: ");
 					Professor prof = new Professor(leitor.next());
@@ -79,13 +88,14 @@ public class AppAcessoSalas {
 					//adicionar id ao objeto professor
 					profDAO.verificaProf(prof); //verificar se nome é válido
 					if (prof.getId() > 0) {
-						sa.setDisponivel(true);
+						sa.setDisponivel(true);// coloca a sala como disponível 
 						profDAO.devolverChave(prof, sa);
+						salaDAO.setDisponibilidade(sa); // grava a sala como disponível no BD
 					}
 					
 				} else {
-					System.out.println("A chave não está disponível.\n"
-							+ " Informe uma  das opções.");
+					System.out.println("Chave não encontrada.\n"
+							+ " Informe uma opção válida.");
 				}
 				break;
 			case 3: //sair
@@ -101,15 +111,8 @@ public class AppAcessoSalas {
 	}
 
 	/**
-	 * 
-	 * @return uma string correspondente a data e horário atual
+	 * @return a opção do usuário dentre as principais opções do sistema
 	 */
-	private static String getDateTime() { 
-		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss"); 
-		Date date = new Date();
-		return dateFormat.format(date); 
-	}
-
 	private static int opcoes() {
 		String menu = "\n####Sistema de Acesso as Salas ####\n"
 		+ "Informe o número da opção desejada:\n"
