@@ -25,8 +25,8 @@ public class ProfessorDAO {
 		
 		// String com a query de grava as informações necessárias para retirar a chave
 		String sql_acessos = "INSERT INTO acessos "
-				+ "(retirada, sala_num) VALUES "
-				+ "(?, ?)";
+				+ "(retirada, professor_id, sala_num) VALUES "
+				+ "(?, ?, ?)";
 		Connection conn = null;
 		PreparedStatement pstm = null;
 		try {
@@ -46,7 +46,8 @@ public class ProfessorDAO {
 			String s = dateFormat.format(date).toString(); 
 			
 			pstm.setString(1, s);
-			pstm.setInt(2, sala.getNumero());
+			pstm.setInt(2, professor.getId());
+			pstm.setInt(3, sala.getNumero());
 			
 			//executar a query
 			pstm.execute();
