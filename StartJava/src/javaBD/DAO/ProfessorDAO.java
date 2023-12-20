@@ -115,57 +115,6 @@ public class ProfessorDAO {
 		
 	}
 	
-	/* CRUD
-	 * c: create
-	 * r: read
-	 * u: update
-	 * d: delete
-	 * 
-	 */
-
-	/**
-	 * 
-	 * save - método que insere dados na tabela professor do banco de dados admsalas
-	 */
-
-	public void save(Professor professor) {
-		String sql = "INSERT INTO professor (nome,senha) VALUES (?, ?)";
-		Connection conn = null;
-		PreparedStatement pstm = null;
-		try {
-			
-			//cria um conexao com o banco de dados
-			conn = ConnectionFactory.createConnectionToMySQL();
-			
-			//criamos uma prepared statement 
-			pstm = conn.prepareStatement(sql);
-			
-			//colocar valores que são esperados pela query
-			pstm.setString(1, professor.getNome());
-			pstm.setString(2, professor.getSenha());
-			
-			//executar a query
-			pstm.execute();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			
-		} finally {
-			try {
-				if(pstm!=null) {
-					pstm.close();
-				}
-				if (conn !=null) {
-					conn.close();
-				}
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-	}
-	
-	
-	
 	public List<Professor> getProfessores(){
 		
 		String sql ="SELECT * FROM professor";
@@ -194,88 +143,6 @@ public class ProfessorDAO {
 		}
 		
 		return professores;
-	}
-	
-	public ArrayList<String> getNomeProfessores(){
-		
-		String sql ="SELECT nome FROM professor";
-		List<Professor> professores = new ArrayList<Professor>();
-		
-		Connection conn = null;
-		PreparedStatement pstm = null;
-		//classe que vai recuperar os dados do banco
-		ResultSet rset = null;
-		
-		ArrayList<String> nomes = new ArrayList<String>();
-		try {
-			
-			conn = ConnectionFactory.createConnectionToMySQL();
-			pstm = conn.prepareStatement(sql);
-			rset = pstm.executeQuery();
-			
-			while(rset.next()) {
-				nomes.add(rset.getString("nome"));
-			}
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-		} finally {
-			try {
-				if(pstm!=null) {
-					pstm.close();
-				}
-				if (conn !=null) {
-					conn.close();
-				}
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-		
-		return nomes;
-	}
-
-	public boolean login(Professor professor) {
-		//ex.: select id from professor where nome = "André Lôbo" and senha = "Teste123";
-		
-		String sql = "SELECT id FROM professor WHERE nome = ? and senha = ?";
-		Connection conn = null;
-		PreparedStatement pstm = null;
-		ResultSet rset = null;
-		
-		try {
-			//cria um conexao com o banco de dados
-			conn = ConnectionFactory.createConnectionToMySQL();
-			
-			//criamos uma prepared statement 
-			pstm = conn.prepareStatement(sql);
-			
-			//colocar valores que são esperados pela query
-			pstm.setString(1, professor.getNome());
-			pstm.setString(2, professor.getSenha());
-			
-			//executar a query
-			rset = pstm.executeQuery();
-			
-			return rset.first();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("Nome ou senha não encontrado na base de dados! "
-					+ "\nRepita a operação novamente!");
-			
-		} finally {
-			try {
-				if(pstm!=null) {
-					pstm.close();
-				}
-				if (conn !=null) {
-					conn.close();
-				}
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		} return false;
 	}
 
 	public void verificaProf(Professor professor) {
@@ -314,9 +181,5 @@ public class ProfessorDAO {
 		}
 		
 	}
-
-
-
 	
-
 }
